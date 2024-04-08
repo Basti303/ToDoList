@@ -51,6 +51,9 @@
     <ClCompile Include="src\Elements\Rectangle.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Elements\Line.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vendor\glm\detail\_features.hpp">
@@ -929,10 +932,10 @@
     <ClInclude Include="src\Elements\InputBox.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Elements\Element.h">
+    <ClInclude Include="src\Elements\Rectangle.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="src\Elements\Rectangle.h">
+    <ClInclude Include="src\Elements\Line.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

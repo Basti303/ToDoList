@@ -26,12 +26,26 @@ void Menu::Init()
 	glm::mat4 view =glm::mat4(1.0f);
 	m_RectangleShader.SetUniformMat4f("view", view);
 
-	Elements::Rectangle* rect = new Elements::Rectangle(glm::vec2(30, 30), glm::vec2(10.0f, 600.0f));
-	rect->SetColor(glm::vec4(0.0f, 0.8f, 0.9f, 1.0f));
-	m_Elements.emplace_back(rect);
+	InputBox text = InputBox(m_Font, "Sample Text");
+	text.SetColor(glm::vec3(1.0f, 0.0f, 0.0f));
+	text.SetPosition(glm::vec2(0.0f, 0.0f));
+	m_InputBoxes.emplace_back(text);
+	text.SetText("Another sample text");
+	text.SetColor(glm::vec3(0.3f, 0.7f, 0.6f));
+	text.SetPosition(glm::vec2(0.0f, m_WindowHeight - text.GetSize().y));
+	m_InputBoxes.emplace_back(text);
 
-	m_Elements.emplace_back(new Elements::InputBox(m_Font, "Gay"));
-	m_Elements[1]->SetPosition(glm::vec2(0.0f, (float)m_WindowHeight - m_Elements[1]->GetSize().y));
+	glm::vec2 rectSize(200.0f, m_WindowHeight);
+	Rectangle rect = Rectangle(glm::vec2(rectSize.x / 2, rectSize.y / 2), glm::vec2(rectSize.x, rectSize.y - 2.f));
+	rect.SetColor(glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
+	rect.SetLineWidth(5);
+	m_Rectangles.emplace_back(rect);
+	
+	Line line = Line(&m_WindowWidth, &m_WindowHeight, glm::vec2(0, 0), glm::vec2(m_WindowWidth, m_WindowHeight));
+	line.SetColor(glm::vec4(0.0f, 1.0f, 0.3f, 1.0f));
+	line.SetLineWidth(2.0f);
+	m_Lines.emplace_back(line);
+
 }
 
 void Menu::ProcessInput(float deltaTime)
@@ -41,18 +55,15 @@ void Menu::ProcessInput(float deltaTime)
 	// Check if an element was clicked and change selected element
 	if (Input::isMouseButtonReleased(GLFW_MOUSE_BUTTON_1))
 	{
-		for (auto& element : m_Elements)
+		for (auto& input : m_InputBoxes)
 		{
-			auto bounds = element->GetBounds();
+			auto bounds = input.GetBounds();
 			auto reversedCursorHeight = std::abs(Input::mouseY - m_WindowHeight);
 			if (Input::mouseX < bounds.x + bounds.z && Input::mouseX > bounds.x &&
 				reversedCursorHeight < bounds.y + bounds.w && reversedCursorHeight > bounds.y)
 			{
-				if (m_SelectedElement != nullptr)
-					m_SelectedElement->isSelected;
-				element->isSelected = true;
-				m_SelectedElement = element;
-				std::cout << "Clicked element!\n";
+				m_SelectedInputBox = &input;
+				std::cout << "Clicked input with text: " << m_SelectedInputBox->GetText() << std::endl;
 			}
 		}
 	}
@@ -60,8 +71,8 @@ void Menu::ProcessInput(float deltaTime)
 
 void Menu::Update(float deltaTime)
 {
-	if(m_SelectedElement != nullptr)
-		m_SelectedElement->Update();
+	if (m_SelectedInputBox != nullptr)
+		m_SelectedInputBox->Update();
 
 	// input stuff
 	Input::endOfFrame();
@@ -72,12 +83,10 @@ void Menu::Render()
 	glClear(GL_COLOR_BUFFER_BIT);
 	glClearColor(0.13f, 0.13f, 0.13f, 1.0f);
 
-	m_Elements[0]->Draw(m_RectangleShader);
-	m_Elements[1]->Draw(m_TextShader);
-}
-
-void Menu::DeselectAllElements()
-{
-	for (auto& element : m_Elements)
-		element->isSelected = false;
+	for (auto& input : m_InputBoxes)
+		input.Draw(m_TextShader);
+	for (auto& rects : m_Rectangles)
+		rects.Draw(m_RectangleShader);
+	for (auto& lines : m_Lines)
+		lines.Draw(m_RectangleShader);
 }
