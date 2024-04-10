@@ -24,8 +24,8 @@ public:
 	};
 
 public:
-	Line(int* windowWidth, int* windowHeight);
-	Line(int* windowWidth, int* windowHeight, glm::vec2 start, glm::vec2 end);
+	Line();
+	Line(glm::vec2 start, glm::vec2 end);
 
 	void Update();
 	void Draw(Shader& shader);
@@ -43,8 +43,6 @@ private:
 	glm::vec2 m_Start, m_End;
 	glm::vec4 m_Color = glm::vec4(1.0f);
 	float m_LineWidth = 1;
-	int* m_WindowWidth;
-	int* m_WindowHeight;
 
 	unsigned m_VB;
 	unsigned m_VA;

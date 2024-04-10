@@ -26,26 +26,26 @@ void Menu::Init()
 	glm::mat4 view =glm::mat4(1.0f);
 	m_RectangleShader.SetUniformMat4f("view", view);
 
-	InputBox text = InputBox(m_Font, "Sample Text");
-	text.SetColor(glm::vec3(1.0f, 0.0f, 0.0f));
-	text.SetPosition(glm::vec2(0.0f, 0.0f));
-	m_InputBoxes.emplace_back(text);
-	text.SetText("Another sample text");
-	text.SetColor(glm::vec3(0.3f, 0.7f, 0.6f));
-	text.SetPosition(glm::vec2(0.0f, m_WindowHeight - text.GetSize().y));
-	m_InputBoxes.emplace_back(text);
+	m_Sidebar.Init(m_WindowHeight);
+	Content c;
+	c.SetTitle("List1");
+	c.AddTask("Task1");
+	c.AddTask("Task2");
+	Content f;
+	f.SetTitle("List2");
+	f.AddTask("Thing1");
+	f.AddTask("Thing2");
+	m_Contents.emplace_back(c);
+	m_Contents.emplace_back(f);
+	f.SetTitle("List3");
+	m_Contents.emplace_back(f);
+	f.SetTitle("List4");
+	m_Contents.emplace_back(f);
+	f.SetTitle("List5");
+	m_Contents.emplace_back(f);
 
-	glm::vec2 rectSize(200.0f, m_WindowHeight);
-	Rectangle rect = Rectangle(glm::vec2(rectSize.x / 2, rectSize.y / 2), glm::vec2(rectSize.x, rectSize.y - 2.f));
-	rect.SetColor(glm::vec4(1.0f, 0.0f, 1.0f, 1.0f));
-	rect.SetLineWidth(5);
-	m_Rectangles.emplace_back(rect);
-	
-	Line line = Line(&m_WindowWidth, &m_WindowHeight, glm::vec2(0, 0), glm::vec2(m_WindowWidth, m_WindowHeight));
-	line.SetColor(glm::vec4(0.0f, 1.0f, 0.3f, 1.0f));
-	line.SetLineWidth(2.0f);
-	m_Lines.emplace_back(line);
-
+	if (m_Contents.size() > 0)
+		m_SelectedContent = &m_Contents[0];
 }
 
 void Menu::ProcessInput(float deltaTime)
@@ -55,25 +55,13 @@ void Menu::ProcessInput(float deltaTime)
 	// Check if an element was clicked and change selected element
 	if (Input::isMouseButtonReleased(GLFW_MOUSE_BUTTON_1))
 	{
-		for (auto& input : m_InputBoxes)
-		{
-			auto bounds = input.GetBounds();
-			auto reversedCursorHeight = std::abs(Input::mouseY - m_WindowHeight);
-			if (Input::mouseX < bounds.x + bounds.z && Input::mouseX > bounds.x &&
-				reversedCursorHeight < bounds.y + bounds.w && reversedCursorHeight > bounds.y)
-			{
-				m_SelectedInputBox = &input;
-				std::cout << "Clicked input with text: " << m_SelectedInputBox->GetText() << std::endl;
-			}
-		}
+		
 	}
 }
 
 void Menu::Update(float deltaTime)
 {
-	if (m_SelectedInputBox != nullptr)
-		m_SelectedInputBox->Update();
-
+	
 	// input stuff
 	Input::endOfFrame();
 }
@@ -83,10 +71,8 @@ void Menu::Render()
 	glClear(GL_COLOR_BUFFER_BIT);
 	glClearColor(0.13f, 0.13f, 0.13f, 1.0f);
 
-	for (auto& input : m_InputBoxes)
-		input.Draw(m_TextShader);
-	for (auto& rects : m_Rectangles)
-		rects.Draw(m_RectangleShader);
-	for (auto& lines : m_Lines)
-		lines.Draw(m_RectangleShader);
+	std::vector<std::string> title;
+	for (auto c : m_Contents)
+		title.emplace_back(c.GetTitle());
+	m_Sidebar.Draw(title, &m_Font, m_TextShader, m_RectangleShader, m_WindowHeight);
 }

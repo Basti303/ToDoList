@@ -54,6 +54,12 @@
     <ClCompile Include="src\Elements\Line.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Elements\Sidebar.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="src\Elements\Content.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vendor\glm\detail\_features.hpp">
@@ -936,6 +942,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Elements\Line.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elements\Sidebar.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elements\Content.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

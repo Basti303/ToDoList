@@ -135,9 +135,11 @@
   <ItemGroup>
     <ClCompile Include="src\Application.cpp" />
     <ClCompile Include="src\Core\Window.cpp" />
+    <ClCompile Include="src\Elements\Content.cpp" />
     <ClCompile Include="src\Elements\InputBox.cpp" />
     <ClCompile Include="src\Elements\Line.cpp" />
     <ClCompile Include="src\Elements\Rectangle.cpp" />
+    <ClCompile Include="src\Elements\Sidebar.cpp" />
     <ClCompile Include="src\Events\Input.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Renderer\Shader.cpp" />
@@ -151,9 +153,11 @@
     <ClInclude Include="src\Application.h" />
     <ClInclude Include="src\Core\Timer.h" />
     <ClInclude Include="src\Core\Window.h" />
+    <ClInclude Include="src\Elements\Content.h" />
     <ClInclude Include="src\Elements\InputBox.h" />
     <ClInclude Include="src\Elements\Line.h" />
     <ClInclude Include="src\Elements\Rectangle.h" />
+    <ClInclude Include="src\Elements\Sidebar.h" />
     <ClInclude Include="src\Events\Input.h" />
     <ClInclude Include="src\Renderer\Shader.h" />
     <ClInclude Include="src\Renderer\Text.h" />

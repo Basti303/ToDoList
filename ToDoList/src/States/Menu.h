@@ -9,6 +9,8 @@
 #include "Elements/InputBox.h"
 #include "Elements/Rectangle.h"
 #include "Elements/Line.h"
+#include "Elements/Sidebar.h"
+#include "Elements/Content.h"
 
 class Menu : public StateSystem::State
 {
@@ -29,8 +31,8 @@ private:
 	Shader m_TextShader, m_RectangleShader;
 	Text::Font m_Font = Text::Font("res/fonts/BitterPro/BitterPro-Regular.ttf");
 
-	InputBox* m_SelectedInputBox = nullptr;
-	std::vector<InputBox> m_InputBoxes;
-	std::vector<Rectangle> m_Rectangles;
-	std::vector<Line> m_Lines;
+	Sidebar m_Sidebar;
+	std::vector<Content> m_Contents;
+
+	Content* m_SelectedContent = nullptr;
 };

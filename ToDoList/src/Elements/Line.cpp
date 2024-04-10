@@ -2,16 +2,15 @@
 
 #include <glm/gtc/matrix_transform.hpp>
 
-Line::Line(int* windowWidth, int* windowHeight)
-	: m_WindowWidth(windowWidth), m_WindowHeight(windowHeight)
+Line::Line()
 {
 	InitVertexArray();
 	InitVertexBuffer();
 	InitIndexBuffer();
 }
 
-Line::Line(int* windowWidth, int* windowHeight, glm::vec2 start, glm::vec2 end)
-	: m_Start(start), m_End(end), m_WindowWidth(windowWidth), m_WindowHeight(windowHeight)
+Line::Line(glm::vec2 start, glm::vec2 end)
+	: m_Start(start), m_End(end)
 {
 	InitVertexArray();
 	InitVertexBuffer();
