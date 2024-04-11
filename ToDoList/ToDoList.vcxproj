@@ -140,6 +140,7 @@
     <ClCompile Include="src\Elements\Line.cpp" />
     <ClCompile Include="src\Elements\Rectangle.cpp" />
     <ClCompile Include="src\Elements\Sidebar.cpp" />
+    <ClCompile Include="src\Elements\TaskPanel.cpp" />
     <ClCompile Include="src\Events\Input.cpp" />
     <ClCompile Include="src\Main.cpp" />
     <ClCompile Include="src\Renderer\Shader.cpp" />
@@ -158,12 +159,14 @@
     <ClInclude Include="src\Elements\Line.h" />
     <ClInclude Include="src\Elements\Rectangle.h" />
     <ClInclude Include="src\Elements\Sidebar.h" />
+    <ClInclude Include="src\Elements\TaskPanel.h" />
     <ClInclude Include="src\Events\Input.h" />
     <ClInclude Include="src\Renderer\Shader.h" />
     <ClInclude Include="src\Renderer\Text.h" />
     <ClInclude Include="src\StateSystem\State.h" />
     <ClInclude Include="src\StateSystem\StateManager.h" />
     <ClInclude Include="src\States\Menu.h" />
+    <ClInclude Include="src\Utils\Bounds.h" />
     <ClInclude Include="vendor\glm\common.hpp" />
     <ClInclude Include="vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="vendor\glm\detail\compute_vector_relational.hpp" />

@@ -60,6 +60,9 @@
     <ClCompile Include="src\Elements\Content.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="src\Elements\TaskPanel.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="vendor\glm\detail\_features.hpp">
@@ -948,6 +951,12 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="src\Elements\Content.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Elements\TaskPanel.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="src\Utils\Bounds.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

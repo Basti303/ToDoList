@@ -11,6 +11,7 @@
 #include "Elements/Line.h"
 #include "Elements/Sidebar.h"
 #include "Elements/Content.h"
+#include "Elements/TaskPanel.h"
 
 class Menu : public StateSystem::State
 {
@@ -32,6 +33,7 @@ private:
 	Text::Font m_Font = Text::Font("res/fonts/BitterPro/BitterPro-Regular.ttf");
 
 	Sidebar m_Sidebar;
+	TaskPanel m_Taskpanel;
 	std::vector<Content> m_Contents;
 
 	Content* m_SelectedContent = nullptr;

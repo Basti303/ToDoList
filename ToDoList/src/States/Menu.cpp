@@ -75,4 +75,5 @@ void Menu::Render()
 	for (auto c : m_Contents)
 		title.emplace_back(c.GetTitle());
 	m_Sidebar.Draw(title, &m_Font, m_TextShader, m_RectangleShader, m_WindowHeight);
+	m_Taskpanel.Draw(m_Contents[0].GetTasks(), &m_Font, m_TextShader, m_RectangleShader, 300.0f, m_WindowWidth, m_WindowHeight);
 }
