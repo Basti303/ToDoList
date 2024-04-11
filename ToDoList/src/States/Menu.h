@@ -37,4 +37,5 @@ private:
 	std::vector<Content> m_Contents;
 
 	Content* m_SelectedContent = nullptr;
+	short m_SelectedContentIndex;
 };

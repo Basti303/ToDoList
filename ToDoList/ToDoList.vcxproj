@@ -166,7 +166,6 @@
     <ClInclude Include="src\StateSystem\State.h" />
     <ClInclude Include="src\StateSystem\StateManager.h" />
     <ClInclude Include="src\States\Menu.h" />
-    <ClInclude Include="src\Utils\Bounds.h" />
     <ClInclude Include="vendor\glm\common.hpp" />
     <ClInclude Include="vendor\glm\detail\compute_common.hpp" />
     <ClInclude Include="vendor\glm\detail\compute_vector_relational.hpp" />

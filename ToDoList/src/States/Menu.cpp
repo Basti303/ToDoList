@@ -45,7 +45,10 @@ void Menu::Init()
 	m_Contents.emplace_back(f);
 
 	if (m_Contents.size() > 0)
-		m_SelectedContent = &m_Contents[0];
+	{
+		m_SelectedContentIndex = 0;
+		m_SelectedContent = &m_Contents[m_SelectedContentIndex];
+	}
 }
 
 void Menu::ProcessInput(float deltaTime)
@@ -55,7 +58,20 @@ void Menu::ProcessInput(float deltaTime)
 	// Check if an element was clicked and change selected element
 	if (Input::isMouseButtonReleased(GLFW_MOUSE_BUTTON_1))
 	{
-		
+		// invert mouseY
+		float mouseY = m_WindowHeight - Input::mouseY;
+		// Check if something in the sidebar was clicked
+		if (Input::mouseX < m_Sidebar.GetWidth())
+		{
+			auto topicCnt = m_Contents.size();
+			if (Input::mouseY < topicCnt * m_Sidebar.GetTopicHeight())
+			{
+				// check which topic was clicked
+				m_SelectedContentIndex = std::floor(Input::mouseY / m_Sidebar.GetTopicHeight());
+				m_SelectedContent = &m_Contents[m_SelectedContentIndex];
+				//std::cout << "Clicked topic: " << m_SelectedContent->GetTitle() << std::endl;
+			}
+		}
 	}
 }
 
@@ -74,6 +90,7 @@ void Menu::Render()
 	std::vector<std::string> title;
 	for (auto c : m_Contents)
 		title.emplace_back(c.GetTitle());
-	m_Sidebar.Draw(title, &m_Font, m_TextShader, m_RectangleShader, m_WindowHeight);
-	m_Taskpanel.Draw(m_Contents[0].GetTasks(), &m_Font, m_TextShader, m_RectangleShader, 300.0f, m_WindowWidth, m_WindowHeight);
+	m_Sidebar.Draw(title, m_SelectedContentIndex, &m_Font, m_TextShader, m_RectangleShader, m_WindowHeight);
+	if(m_SelectedContent)
+		m_Taskpanel.Draw(m_SelectedContent->GetTasks(), & m_Font, m_TextShader, m_RectangleShader, 300.0f, m_WindowWidth, m_WindowHeight);
 }

@@ -14,10 +14,14 @@ public:
 
 	void Init(const int& windowHeight);
 	void Update();
-	void Draw(const std::vector<std::string>& title, Text::Font* font, Shader& textShader, Shader& lineShader, const int& windowHeight);
+	void Draw(const std::vector<std::string>& title, short selectedIndex, Text::Font* font, Shader& textShader, Shader& lineShader, const int& windowHeight);
+
+	float GetWidth() const { return m_Width; }
+	float GetTopicHeight() const { return m_TopicBoundsHeight; }
 
 private:
 	float m_Width;
+	float m_TopicBoundsHeight;
 
 	Line m_RightLine;
 };
